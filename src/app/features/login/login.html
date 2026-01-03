@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="login-card">
+    <h2>Login</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <label>Email</label>
+        <input type="email" formControlName="email" />
+
+        <div class="err" *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+            Please enter a valid email address.
+        </div>
+
+        <label>Password</label>
+        <input type="password" formControlName="password" />
+
+        <div class="err" *ngIf="form.controls['password'].touched && form.controls['password'].invalid">
+            Password is required.
+        </div>
+
+        <div class="err" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+        <button type="submit" [disabled]="form.invalid">Login</button>
+    </form>
+
+    <p class="hint">
+        Reminder: use an email containing <b>admin</b> or <b>manager</b> to simulate roles (e.g. admin@test.com).
+    </p>
+</div>
