@@ -1,1 +1,80 @@
-<p>record-edit works!</p>
+<h2>Update Record</h2>
+
+<div class="toolbar">
+    <button class="btn btn-outline-primary" (click)="reload()">Reload</button>
+    <button class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+    <small *ngIf="lastLoadedAt">Last loaded: {{ lastLoadedAt | date:'mediumTime' }}</small>
+</div>
+
+<div *ngIf="loading">Loading...</div>
+<div class="err" *ngIf="!loading && errorMsg">{{ errorMsg }}</div>
+
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="submit()">
+    <fieldset [disabled]="submitting || !record">
+        <h3>Record Details</h3>
+
+        <label>Title</label>
+        <input formControlName="title" />
+        <div class="err" *ngIf="isInvalid('title')">Title is required.</div>
+
+        <label>Artist</label>
+        <input formControlName="artist" />
+        <div class="err" *ngIf="isInvalid('artist')">Artist is required.</div>
+
+        <label>Format</label>
+        <select formControlName="format">
+            <option value="">-- Select format --</option>
+            <option *ngFor="let f of formats" [value]="f.name">{{ f.name }}</option>
+        </select>
+        <div class="err" *ngIf="isInvalid('format')">Format is required.</div>
+
+        <label>Genre</label>
+        <select formControlName="genre">
+            <option value="">-- Select genre --</option>
+            <option *ngFor="let g of genres" [value]="g.name">{{ g.name }}</option>
+        </select>
+        <div class="err" *ngIf="isInvalid('genre')">Genre is required.</div>
+
+        <label>Release Year</label>
+        <input type="number" formControlName="releaseYear" />
+        <div class="err" *ngIf="isInvalid('releaseYear')">Release year is required.</div>
+
+        <label>Price</label>
+        <input type="number" step="0.01" formControlName="price" />
+        <div class="err" *ngIf="isInvalid('price')">Price is required.</div>
+
+        <label>Stock Quantity</label>
+        <input type="number" formControlName="stockQuantity" />
+        <div class="err" *ngIf="isInvalid('stockQuantity')">Stock quantity is required.</div>
+
+        <h3>Customer Details (Purchase)</h3>
+
+        <label>Customer ID</label>
+        <input formControlName="customerId" />
+        <div class="err" *ngIf="isInvalid('customerId')">
+            Customer ID must be numbers ending with a letter (e.g. 12345A).
+        </div>
+
+        <label>First Name</label>
+        <input formControlName="customerFirstName" />
+        <div class="err" *ngIf="isInvalid('customerFirstName')">First name is required.</div>
+
+        <label>Last Name</label>
+        <input formControlName="customerLastName" />
+        <div class="err" *ngIf="isInvalid('customerLastName')">Last name is required.</div>
+
+        <label>Contact Number</label>
+        <input formControlName="customerContactNumber" />
+        <div class="err" *ngIf="isInvalid('customerContactNumber')">
+            Contact number must be numeric and at least 8 digits.
+        </div>
+
+        <label>Email</label>
+        <input type="email" formControlName="customerEmail" />
+        <div class="err" *ngIf="isInvalid('customerEmail')">Enter a valid email address.</div>
+
+        <button type="submit" [disabled]="form.invalid || submitting || !record">
+            {{ submitting ? 'Saving...' : 'Update Record' }}
+        </button>
+    </fieldset>
+</form>
