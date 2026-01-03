@@ -18,8 +18,6 @@ export class RecordsList implements OnInit {
   records: RecordDto[] = [];
   loading = false;
   errorMsg = '';
-  lastLoadedAt: Date | null = null;
-
   constructor(
     private recordsService: RecordsService,
     private auth: AuthService,
@@ -45,7 +43,6 @@ export class RecordsList implements OnInit {
         }),
         finalize(() => {
           this.loading = false;
-          this.lastLoadedAt = new Date();
           this.cdr.detectChanges();
         })
       )
@@ -53,10 +50,6 @@ export class RecordsList implements OnInit {
         this.records = data;
         this.cdr.detectChanges();
       });
-  }
-
-  reload(): void {
-    this.loadRecords();
   }
 
   // permissions
@@ -68,6 +61,36 @@ export class RecordsList implements OnInit {
   get canDelete(): boolean {
     return this.auth.getRole() === 'System Admin';
   }
+
+  deletingId: number | null = null;
+
+  deleteRecord(id: number): void {
+    if (!this.canDelete) return;
+
+    const confirmed = window.confirm('Are you sure you want to delete this record?');
+    if (!confirmed) return;
+
+    this.deletingId = id;
+    this.errorMsg = '';
+    this.cdr.detectChanges();
+
+    this.recordsService.delete(id)
+      .pipe(
+        catchError(err => {
+          console.error('delete error', err);
+          this.errorMsg = 'Failed to delete record.';
+          return of(null);
+        }),
+        finalize(() => {
+          this.deletingId = null;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe(() => {
+        this.loadRecords();
+      });
+  }
+
 
   view(id: number) { this.router.navigate(['/records', id]); }
   edit(id: number) { this.router.navigate(['/records', id, 'edit']); }

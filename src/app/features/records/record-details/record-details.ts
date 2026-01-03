@@ -22,7 +22,6 @@ export class RecordDetails implements OnInit {
   record: RecordDto | null = null;
   loading = false;
   errorMsg = '';
-  lastLoadedAt: Date | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,7 +56,6 @@ export class RecordDetails implements OnInit {
         }),
         finalize(() => {
           this.loading = false;
-          this.lastLoadedAt = new Date();
           this.cdr.detectChanges();
         })
       )
@@ -65,11 +63,6 @@ export class RecordDetails implements OnInit {
         this.record = data;
         this.cdr.detectChanges();
       });
-  }
-
-
-  reload(): void {
-    this.loadRecord();
   }
 
   back(): void {

@@ -38,8 +38,10 @@
                             Update
                         </button>
 
-                        <button class="btn btn-outline-danger" [disabled]="!canDelete">
-                            Delete
+
+                        <button class="btn btn-outline-danger" (click)="deleteRecord(r.id!)"
+                            [disabled]="!canDelete || deletingId === r.id">
+                            {{ deletingId === r.id ? 'Deleting...' : 'Delete' }}
                         </button>
                     </div>
                 </td>

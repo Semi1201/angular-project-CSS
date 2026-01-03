@@ -29,7 +29,6 @@ export class RecordEdit implements OnInit {
   loading = false;
   submitting = false;
   errorMsg = '';
-  lastLoadedAt: Date | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -114,7 +113,6 @@ export class RecordEdit implements OnInit {
       }),
       finalize(() => {
         this.loading = false;
-        this.lastLoadedAt = new Date();
         this.cdr.detectChanges();
       })
     ).subscribe(rec => {
@@ -140,10 +138,6 @@ export class RecordEdit implements OnInit {
 
       this.cdr.detectChanges();
     });
-  }
-
-  reload(): void {
-    this.loadLookupsAndRecord();
   }
 
   cancel(): void {
