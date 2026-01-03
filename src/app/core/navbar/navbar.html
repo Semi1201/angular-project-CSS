@@ -1,15 +1,23 @@
-<nav class="nav">
-    <button (click)="goLogin()">{{ loginButtonText }}</button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-3 shadow-sm">
+    <div class="container-fluid">
 
-    <button (click)="goRecords()" [disabled]="!isLoggedIn">
-        Records
-    </button>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" (click)="goLogin()">
+                {{ loginButtonText }}
+            </button>
 
-    <button (click)="goAdd()" [disabled]="!canAdd">
-        Add records
-    </button>
+            <button class="btn btn-outline-secondary" (click)="goRecords()" [disabled]="!isLoggedIn">
+                Records
+            </button>
 
-    <span class="role" *ngIf="isLoggedIn">
-        Logged in as: {{ role }}
-    </span>
+            <button class="btn btn-outline-success" (click)="goAdd()" [disabled]="!canAdd">
+                Add Records
+            </button>
+        </div>
+
+        <span class="badge bg-primary ms-auto" *ngIf="isLoggedIn">
+            Logged in as: {{ role }}
+        </span>
+
+    </div>
 </nav>
