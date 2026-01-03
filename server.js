@@ -15,6 +15,7 @@ server.use((req, res, next) => {
     next();
 });
 
+//Bearer Token
 server.use((req, res, next) => {
     const authHeader = req.headers.authorization;
 
@@ -27,6 +28,7 @@ server.use((req, res, next) => {
     next();
 });
 
+//API routes
 server.use(router);
 
 server.listen(3000, () => {

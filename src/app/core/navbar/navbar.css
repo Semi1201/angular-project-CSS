@@ -1,0 +1,26 @@
+.nav {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border: 2px solid #2b4d99;
+    align-items: center;
+}
+
+button {
+    padding: 12px 40px;
+    font-size: 18px;
+    background: #3f6db5;
+    color: white;
+    border: 2px solid #1d2f5f;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.role {
+    margin-left: auto;
+    font-weight: 600;
+}

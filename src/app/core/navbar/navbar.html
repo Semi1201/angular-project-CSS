@@ -1,0 +1,15 @@
+<nav class="nav">
+    <button (click)="goLogin()">{{ loginButtonText }}</button>
+
+    <button (click)="goRecords()" [disabled]="!isLoggedIn">
+        Records
+    </button>
+
+    <button (click)="goAdd()" [disabled]="!canAdd">
+        Add records
+    </button>
+
+    <span class="role" *ngIf="isLoggedIn">
+        Logged in as: {{ role }}
+    </span>
+</nav>
