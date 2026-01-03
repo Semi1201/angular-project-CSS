@@ -1,0 +1,91 @@
+{
+    "records": [
+        {
+            "id": 1,
+            "title": "Abbey Road",
+            "artist": "The Beatles",
+            "format": "Vinyl",
+            "genre": "Rock",
+            "releaseYear": 1969,
+            "price": 27.99,
+            "stockQuantity": 10
+        },
+        {
+            "id": 2,
+            "title": "Back to Black",
+            "artist": "Amy Winehouse",
+            "format": "CD",
+            "genre": "Pop",
+            "releaseYear": 2006,
+            "price": 18.99,
+            "stockQuantity": 15
+        },
+        {
+            "id": 3,
+            "title": "Blue Train",
+            "artist": "John Coltrane",
+            "format": "Vinyl",
+            "genre": "Jazz",
+            "releaseYear": 1957,
+            "price": 26.99,
+            "stockQuantity": 6
+        }
+    ],
+    "formats": [
+        {
+            "id": 1,
+            "name": "Vinyl"
+        },
+        {
+            "id": 2,
+            "name": "CD"
+        }
+    ],
+    "genres": [
+        {
+            "id": 1,
+            "name": "Rock"
+        },
+        {
+            "id": 2,
+            "name": "Pop"
+        },
+        {
+            "id": 3,
+            "name": "Jazz"
+        }
+    ],
+    "customers": [
+        {
+            "id": "2001C",
+            "firstName": "Daniel",
+            "lastName": "Attard",
+            "contactNumber": "+356 99112233",
+            "email": "daniel.attard@email.com"
+        },
+        {
+            "id": "2002D",
+            "firstName": "Semira",
+            "lastName": "Saafi",
+            "contactNumber": "+356 77889900",
+            "email": "semira.saafi@email.com"
+        }
+    ],
+    "employees": [
+        {
+            "id": 1,
+            "name": "Luke Micallef",
+            "role": "Salesperson"
+        },
+        {
+            "id": 2,
+            "name": "Nicole Spiteri",
+            "role": "Store Manager"
+        },
+        {
+            "id": 3,
+            "name": "Daniel Xuereb",
+            "role": "System Admin"
+        }
+    ]
+}
