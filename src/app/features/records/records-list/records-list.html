@@ -1,13 +1,13 @@
-<div *ngIf="loading" class="d-flex align-items-center gap-2 my-3">
-    <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
-    <span>Loading...</span>
+<div *ngIf="loading" class="loading">
+    Loading...
 </div>
 
-<div class="alert alert-danger my-3" *ngIf="errorMsg">
+<div *ngIf="!loading && errorMsg" class="err">
     {{ errorMsg }}
 </div>
 
-<div class="table-responsive" *ngIf="!loading && !errorMsg">
+
+<div class="table-responsive">
     <table class="table table-striped table-hover align-middle mb-0">
         <thead class="table-light">
             <tr>

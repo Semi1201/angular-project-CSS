@@ -6,7 +6,7 @@ const STORAGE_KEY = 'music-app-auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private userSubject = new BehaviorSubject<UserDto | null>(null);
+    private userSubject = new BehaviorSubject<UserDto | null>(this.loadUser()); //<< added user as it was not retaining the information
     user$ = this.userSubject.asObservable();
 
     login(email: string, password: string): boolean {
@@ -15,6 +15,7 @@ export class AuthService {
         if (email.toLowerCase().includes('manager')) role = 'Store Manager';
         if (email.toLowerCase().includes('admin')) role = 'System Admin';
 
+        //server.js accepts Bearer admin123
         const user: UserDto = { email, role, token: 'admin123' };
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
@@ -37,5 +38,10 @@ export class AuthService {
 
     getToken(): string | null {
         return this.userSubject.value?.token ?? null;
+    }
+
+    private loadUser(): UserDto | null {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? (JSON.parse(raw) as UserDto) : null;
     }
 }

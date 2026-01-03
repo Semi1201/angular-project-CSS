@@ -1,1 +1,37 @@
-<p>record-details works!</p>
+<div class="toolbar">
+    <button class="btn btn-outline-secondary" (click)="back()">Back</button>
+</div>
+
+<div *ngIf="loading" class="loading">
+    Loading...
+</div>
+
+<div *ngIf="!loading && errorMsg" class="err">
+    {{ errorMsg }}
+</div>
+
+<div *ngIf="!loading && !errorMsg && record">
+    <h2>Record Details</h2>
+
+    <p><b>ID:</b> {{ record.id }}</p>
+    <p><b>Title:</b> {{ record.title | lowercase }}</p>
+    <p><b>Artist:</b> {{ record.artist }}</p>
+    <p><b>Format:</b> {{ record.format }}</p>
+    <p><b>Genre:</b> {{ record.genre }}</p>
+    <p><b>Release Year:</b> {{ record.releaseYear }}</p>
+    <p><b>Price:</b> {{ record.price }}</p>
+
+    <p>
+        <b>Stock Quantity:</b> {{ record.stockQuantity }}
+        <span class="badge">
+            ({{ record.stockQuantity | stockStatus }})
+        </span>
+    </p>
+
+    <h3>Customer (Purchase)</h3>
+    <p><b>Customer ID:</b> {{ record.customerId }}</p>
+    <p><b>First Name:</b> {{ record.customerFirstName }}</p>
+    <p><b>Last Name:</b> {{ record.customerLastName }}</p>
+    <p><b>Contact:</b> {{ record.customerContactNumber }}</p>
+    <p><b>Email:</b> {{ record.customerEmail }}</p>
+</div>

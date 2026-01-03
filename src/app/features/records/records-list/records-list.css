@@ -1,0 +1,15 @@
+.toolbar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.loading {
+    font-size: 18px;
+}
+
+.err {
+    color: red;
+    margin-top: 10px;
+}
