@@ -104,9 +104,9 @@ export class RecordsList implements OnInit {
   private genreColor(genre: string): string {
     const g = (genre || '').toLowerCase();
 
-    if (g.includes('rock')) return '#fa0d0dff';
-    if (g.includes('pop')) return '#c624dcff';
-    if (g.includes('jazz')) return '#0d722bff';
+    if (g.includes('rock')) return '#fa0d0d';
+    if (g.includes('pop')) return '#c624dc';
+    if (g.includes('jazz')) return '#0d722b';
 
     return '#ffffff';
   }
@@ -134,7 +134,7 @@ export class RecordsList implements OnInit {
       const genreValue = (ws[genreCellAddr]?.v ?? '').toString();
       const hex = this.genreColor(genreValue);
 
-      const argb = 'FF' + hex.replace('#', '').toUpperCase();
+      const argb = hex.replace('#', '').toUpperCase();
 
       for (let col = range.s.c; col <= range.e.c; col++) {
         const addr = XLSX.utils.encode_cell({ r: row, c: col });
@@ -143,7 +143,7 @@ export class RecordsList implements OnInit {
         ws[addr].s = {
           fill: {
             patternType: 'solid',
-            fgColor: { argb }
+            fgColor: { rgb: argb }
           }
         };
       }
